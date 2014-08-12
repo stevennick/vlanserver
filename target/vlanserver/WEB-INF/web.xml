@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <display-name>mojarra-regression-test</display-name>
+    <description>A simple regression test to make it easier to get your bug fixed. The only reason we need a web.xml is to set the PROJECT_STAGE to Develoment.  If you have a web.xml, then you need to map the FacesServlet.</description>
+
+    <context-param>
+        <description>
+            Tell the runtime where we are in the project development
+            lifecycle.  Valid values are: 
+            Development, UnitTest, SystemTest, or Production.
+            The runtime will display helpful hints to correct common mistakes
+            when the value is Development.
+        </description>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
+    <!-- Faces Servlet -->
+  <servlet>
+    <servlet-name>VlanServer</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.resourceConfigClass</param-name>
+      <param-value>com.sun.jersey.api.core.PackagesResourceConfig</param-value>
+    </init-param>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>org.ccma.itri.vlanserver.servlet</param-value>
+    </init-param>
+    <init-param>
+      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <!-- 
+    <init-param>
+    	<param-name>com.sun.jersey.spi.container.ExceptionMapperContext</param-name>
+    	<param-value>org.ccma.itri.vlanserver.servlet.mapper</param-value>
+    </init-param>
+    -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+   <servlet-mapping>
+       <servlet-name>VlanServer</servlet-name>
+       <url-pattern>/rest/*</url-pattern>
+   </servlet-mapping>
+
+   <welcome-file-list>
+     <welcome-file>main.xhtml</welcome-file>
+   </welcome-file-list>
+
+</web-app>
