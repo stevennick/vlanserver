@@ -16,15 +16,18 @@ import javax.ws.rs.core.MediaType;
 import org.ccma.itri.vlanserver.ISwitch;
 import org.ccma.itri.vlanserver.coreswitch.CiscoSwitch;
 import org.ccma.itri.vlanserver.model.Vlan;
+import org.ccma.itri.vlanserver.worker.ProcessWorker;
 
 @Path("/vlan")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML + "; qs=0.9" })
 public class VlanService {
 
 	private ISwitch coreSwitch;
+	private ProcessWorker worker;
 
 	public VlanService() {
 		coreSwitch = new CiscoSwitch();
+		worker = ProcessWorker.getInstance();
 	}
 
 	@GET
@@ -56,6 +59,13 @@ public class VlanService {
 	@DELETE
 	public boolean deleteVlanById(@PathParam("id") String id) throws Exception {
 		return coreSwitch.deleteVlanById(Long.parseLong(id));
+	}
+	
+	@Path("/{id}/demo")
+	@GET
+	public String getWorkerId() throws Exception {
+		String output = "Wherever times you call this method, will still return same object for you.\n";
+		return output + worker.toString();
 	}
 	
 	
