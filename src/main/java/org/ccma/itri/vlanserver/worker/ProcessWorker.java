@@ -1,6 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 Cloud Computing Center for Mobile Applications, 
- * Industrial Technology Research Institute (ITRI-CCMA) and others.
+ * Copyright (c) 2010, 2015 Information and Communications Research Laboratories
+ * Industrial Technology Research Institute (ITRI) and others.
  * All rights reserved. 
  *
  * This program and the accompanying materials are made available under the terms of the
@@ -8,7 +8,7 @@
  * http://www.itri.org.tw/eng/econtent/copyright/copyright01.aspx
  *
  * Authors:
- *     (c) 2011-2014 Yi-Fu Ciou <stevennick@gmail.com>
+ *     (c) 2010, 2015 Yi-Fu Ciou <stevennick@gmail.com>
  *     And all corresponding contributors.
  *******************************************************************************/
 package org.ccma.itri.vlanserver.worker;
@@ -16,41 +16,45 @@ package org.ccma.itri.vlanserver.worker;
 /**
  * Demo ProcessWorker singleton pattern for object reuse.
  * 
- * <br/> For more information, refer "singleton pattern" in design patterns.
+ * <br/>
+ * For more information, refer "singleton pattern" in design patterns.
+ * 
  * @author Yi-Fu Ciou
  *
  */
 public class ProcessWorker {
 
-	
 	private static ProcessWorker singleton;
-	
+
 	/**
-	 * The ProcessWorker constructor, prevent access outside by declare as private function.
+	 * The ProcessWorker constructor, prevent access outside by declare as
+	 * private function.
 	 */
 	private ProcessWorker() {
 		// Do object initialize process here
 	}
-	
+
 	/**
 	 * Use this to initialize this class.
 	 */
 	private synchronized static void createInstance() {
-		if(singleton == null) {
+		if (singleton == null) {
 			singleton = new ProcessWorker();
 		}
 	}
-	
+
 	/**
-	 * Get ProcessWorker instance, will create object at first creation, this instance will keep alive under web application life cycle for reuse.
+	 * Get ProcessWorker instance, will create object at first creation, this
+	 * instance will keep alive under web application life cycle for reuse.
+	 * 
 	 * @return
 	 */
 	public static ProcessWorker getInstance() {
-		if(singleton == null) {
+		if (singleton == null) {
 			createInstance();
 		}
 		return singleton;
 	}
-	
+
 	// TODO: Do wherever you wants...
 }

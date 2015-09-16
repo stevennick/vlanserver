@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2015 Information and Communications Research Laboratories
+ * Industrial Technology Research Institute (ITRI) and others.
+ * All rights reserved. 
+ *
+ * This program and the accompanying materials are made available under the terms of the
+ * ITRI Copyright License v1 which accompanies this distribution, and is available at
+ * http://www.itri.org.tw/eng/econtent/copyright/copyright01.aspx
+ *
+ * Authors:
+ *     (c) 2010, 2015 Yi-Fu Ciou <stevennick@gmail.com>
+ *     And all corresponding contributors.
+ *******************************************************************************/
 package org.ccma.itri.vlanserver.servlet;
 
 import java.util.List;
@@ -36,7 +49,7 @@ public class VlanService {
 	}
 
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED })
 	public Vlan createNewVlan(Vlan vlan) throws Exception {
 		return coreSwitch.createNewVlan(vlan);
 	}
@@ -46,28 +59,26 @@ public class VlanService {
 	public Vlan getVlanById(@PathParam("id") String id) throws Exception {
 		return coreSwitch.getVlanById(Long.parseLong(id));
 	}
-	
+
 	@Path("/{id}")
 	@PUT
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED })
 	public Vlan updateVlanById(@PathParam("id") String id, Vlan vlan) throws Exception {
 		vlan.setId(Long.parseLong(id));
 		return coreSwitch.updateVlanById(vlan);
 	}
-	
+
 	@Path("/{id}")
 	@DELETE
 	public boolean deleteVlanById(@PathParam("id") String id) throws Exception {
 		return coreSwitch.deleteVlanById(Long.parseLong(id));
 	}
-	
+
 	@Path("/{id}/demo")
 	@GET
 	public String getWorkerId() throws Exception {
 		String output = "Wherever times you call this method, will still return same object for you.\n";
 		return output + worker.toString();
 	}
-	
-	
 
 }

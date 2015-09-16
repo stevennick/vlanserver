@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2014 Information and Communications Research Laboratories
+ * Industrial Technology Research Institute (ITRI) and others.
+ * All rights reserved. 
+ *
+ * This program and the accompanying materials are made available under the terms of the
+ * ITRI Copyright License v1 which accompanies this distribution, and is available at
+ * http://www.itri.org.tw/eng/econtent/copyright/copyright01.aspx
+ *
+ * Authors:
+ *     (c) 2010, 2014 Yi-Fu Ciou <stevennick@gmail.com>
+ *     And all corresponding contributors.
+ *******************************************************************************/
 package org.ccma.itri.vlanserver;
 
 import java.util.List;
@@ -44,10 +57,12 @@ public interface ISwitch {
 	 * @throws Exception
 	 */
 	public Vlan getVlanById(Long id) throws Exception;
-	
+
 	/**
 	 * Update Vlan attributes by ID
-	 * @param newVlan new attributes with vlan ID
+	 * 
+	 * @param newVlan
+	 *            new attributes with vlan ID
 	 * @return updated Vlan Object
 	 * @throws Exception
 	 */
@@ -55,6 +70,7 @@ public interface ISwitch {
 
 	/**
 	 * Delete Vlan by ID
+	 * 
 	 * @param parseLong
 	 * @return
 	 * @throws Exception
